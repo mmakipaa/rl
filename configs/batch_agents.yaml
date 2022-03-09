@@ -1,0 +1,21 @@
+-
+  name: LSPI_FC
+  method: LsFcBatch
+  epsilon_type: CONSTANT
+  epsilon_constant: 1
+  alpha_type: NOT_USED
+  gamma: 1.0
+-
+  name: LSPI_TC
+  method: LsTcBatch
+  epsilon_type: CONSTANT
+  epsilon_constant: 1
+  alpha_type: NOT_USED
+  gamma: 1.0
+-
+  name: LSPI_POL
+  method: LsPolBatch
+  epsilon_type: CONSTANT
+  epsilon_constant: 1
+  alpha_type: NOT_USED
+  gamma: 1.0

@@ -1,0 +1,7 @@
+- 
+  name: REFERENCE
+  method: MonteCarloOff
+  epsilon_type: CONSTANT
+  epsilon_constant: 1
+  alpha_type: NOT_USED
+  gamma: 1.0

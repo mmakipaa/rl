@@ -1,0 +1,74 @@
+- 
+  name: MONTE_CARLO_OFF
+  method: MonteCarloOff
+  epsilon_type: CONSTANT
+  epsilon_constant: 1
+  alpha_type: NOT_USED
+  gamma: 1.0
+- 
+  name: MONTE_CARLO_ON
+  method: MonteCarloOn
+  epsilon_type: EXPONENTIAL_TARGET_AT
+  epsilon_initial: 0.5
+  epsilon_target: 0.05
+  alpha_type: NOT_USED
+  gamma: 1.0
+- 
+  name: Q_LEARNING
+  method: Qlearning
+  epsilon_type: CONSTANT
+  epsilon_constant: 1
+  alpha_type: EXPONENTIAL_TARGET_AT
+  alpha_initial: 0.2
+  alpha_target: 0.01
+  gamma: 1.0
+- 
+  name: SARSA
+  method: Sarsa
+  epsilon_type: EXPONENTIAL_TARGET_AT
+  epsilon_initial: 0.5
+  epsilon_target: 0.05
+  alpha_type: EXPONENTIAL_TARGET_AT
+  alpha_initial: 0.2
+  alpha_target: 0.01
+  gamma: 1.0
+- 
+  name: SARSA_EXP
+  method: SarsaExpected
+  epsilon_type: EXPONENTIAL_TARGET_AT
+  epsilon_initial: 0.5
+  epsilon_target: 0.05
+  alpha_type: EXPONENTIAL_TARGET_AT
+  alpha_initial: 0.2
+  alpha_target: 0.01
+  gamma: 1.0
+- 
+  name: SG_SARSA_FC
+  method: SgFcSarsa
+  epsilon_type: EXPONENTIAL_TARGET_AT
+  epsilon_initial: 0.5
+  epsilon_target: 0.05
+  alpha_type: INV_ROUNDS_TARGET_AT
+  alpha_initial: 0.03
+  alpha_target: 0.001
+  gamma: 1.0
+-
+  name: SG_SARSA_TC
+  method: SgTcSarsa
+  epsilon_type: EXPONENTIAL_TARGET_AT
+  epsilon_initial: 0.5
+  epsilon_target: 0.05
+  alpha_type: INV_ROUNDS_TARGET_AT
+  alpha_initial: 0.2
+  alpha_target: 0.001
+  gamma: 1.0
+-
+  name: SG_SARSA_POL
+  method: SgPolSarsa
+  epsilon_type: EXPONENTIAL_TARGET_AT
+  epsilon_initial: 0.5
+  epsilon_target: 0.05
+  alpha_type: INV_ROUNDS_TARGET_AT
+  alpha_initial: 0.2
+  alpha_target: 0.001
+  gamma: 1.0

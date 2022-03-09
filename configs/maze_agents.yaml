@@ -1,0 +1,39 @@
+- 
+  name: MC_ON
+  method: MonteCarloOn
+  epsilon_type: INV_VISIT_COUNT_SCALED
+  epsilon_initial: 1
+  epsilon_n0: 300
+  alpha_type: NOT_USED
+  gamma: 1.0
+- 
+  name: SARSA_EXP
+  method: SarsaExpected
+  epsilon_type: INV_VISIT_COUNT_SCALED
+  epsilon_initial: 1
+  epsilon_n0: 200
+  alpha_type: EXPONENTIAL_TARGET_AT
+  alpha_initial: 0.2
+  alpha_target: 0.01
+  gamma: 1.0
+- 
+  name: SARSA
+  method: Sarsa
+  epsilon_type: INV_VISIT_COUNT_SCALED
+  epsilon_initial: 1
+  epsilon_n0: 500
+  alpha_type: EXPONENTIAL_TARGET_AT
+  alpha_initial: 0.2
+  alpha_target: 0.01
+  gamma: 1.0
+- 
+  name: Q_LEARNING
+  method: Qlearning
+  epsilon_type: CONSTANT
+  epsilon_constant: 1
+  alpha_type: EXPONENTIAL_TARGET_AT
+  alpha_initial: 0.05
+  alpha_target: 0.001
+  gamma: 1.0
+
+
