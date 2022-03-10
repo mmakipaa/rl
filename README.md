@@ -38,11 +38,7 @@ config file name - a yaml config file defining agents (methods) to include. If n
 
 report file name - use the argument to override the default report file name which is `../testruns/<environment>_<configfile>_<iterations>.pik`. 
 
-<<<<<<< HEAD
 Argument value `foofile` would create report file `../testruns/foofile.pik`. Note that the folder `../testruns` must exist if no path is given as a part of the argument.
-=======
-Note that the folder `../testruns` must exits if no path is given as a part of the argument. Argument value `foofile` would create report file `../testruns/foofile.pik`.
->>>>>>> 4fa4ada0a633fcea9a033832b3e6901441ab0d92
 
 To permanently change configfile or report paths, modify values of `REPORT_FOLDER` and `CONFIGS_FOLDER` in [utils/constants.py](utils/constants.py)
 
@@ -56,11 +52,7 @@ A simple version of blackjack with infinite deck: Dealer stands at 17. Ties give
 
 A simple maze with noisy moves. `simple` maze implements the "canonical maze" used widely as a Dynamic Programming example. `complex` maze is somewhat, well, more complex. Additional maze structures can be defined in [environments/maze_configs.py](environments/maze_configs.py)
 
-<<<<<<< HEAD
 See [https://github.com/mmakipaa/dp](https://github.com/mmakipaa/dp) for basic Dynamic Programming algorithms applied on the included maze configurations.
-=======
-See [https://github.com/mmakipaa/dp](https://github.com/mmakipaa/dp) for basic Dynamic programming algorithms applied on the above maze configurations.
->>>>>>> 4fa4ada0a633fcea9a033832b3e6901441ab0d92
 
 ## Methods
 
@@ -95,7 +87,6 @@ The above methods use episodes to update estimates of action-value function, eve
 
 ## Approximate value representations
 
-<<<<<<< HEAD
 For approximate linear and batch methods, the following value representations are available:
 
 - Fourier Cosine basis
@@ -109,21 +100,6 @@ Methods to run are defined in a yaml `configfile`, name of which is given as com
 The following `method` combinations are available:
 
 | Method key| Description |
-=======
-For approximate linear and batch methods, the follwing representations are available:
-
-- Fourier Cosine basis
-- Polynomial basis 
-- Simple Tile coding 
-
-## Agent configuration
-
-Methods to run are defined in a yaml `configfile`.
-
-The following `method` combinations are available:
-
-| Method | Description |
->>>>>>> 4fa4ada0a633fcea9a033832b3e6901441ab0d92
 | --- | --- |
 | MonteCarloOn | On-policy Monte Carlo, full episodes and tabular value representation |
 | MonteCarloOff | Off-policy Monte Carlo, full episodes and tabular value representation |
@@ -164,11 +140,7 @@ Note that state visit count -based schedules are only applicable for tabular met
 
 ### Configuration examples
 
-<<<<<<< HEAD
 An agent applying On-policy Monte Carlo. Exploration parameter _epsilon_ for e-greedy policy starts at 1 and decays according to state visit count, with scaling of 50. _Alpha_ is not used for Monte Carlo methods. Discount factor _gamma_ is set at 1.0.
-=======
-An agent applying On-policy Monte Carlo. Epsilon starts at 1 and decays according to state visit count, with scaling value of 50. Alpha is not used for Monte Carlo methods. Discount factor gamma set at 1.0.
->>>>>>> 4fa4ada0a633fcea9a033832b3e6901441ab0d92
 ```yml
 - 
   name: MC_ON_N0_50
@@ -179,11 +151,7 @@ An agent applying On-policy Monte Carlo. Epsilon starts at 1 and decays accordin
   alpha_type: NOT_USED
   gamma: 1.0
 ```
-<<<<<<< HEAD
 An agent applying semi-gradient Sarsa with Fourier Cosine basis. _Epsilon_ decays exponentially, starting from 0.3 and reaching 0.05 at 90% of iterations (number of epsodes to run is given as command line parameter). Similarly learning-rate parameter _alpha_ decays according to inverse time schedule towards target value of 0.001. Discount factor _gamma_ set at 1.0.
-=======
-An agent applying semi-gradient Sarsa with Fourier Cosine basis. Epsilon decays exponentially, starting from 0.3 and reaching 0.05 at 90% of iterations (number of epsodes to run is given as command line parameter). Similarly alpha decays according to inverse time schedule towards target value of 0.001. Discount factor gamma set at 1.0.
->>>>>>> 4fa4ada0a633fcea9a033832b3e6901441ab0d92
 ```yml
 - 
   name: SG_SARSA_FC
@@ -196,11 +164,7 @@ An agent applying semi-gradient Sarsa with Fourier Cosine basis. Epsilon decays 
   alpha_target: 0.001
   gamma: 1.0
 ```
-<<<<<<< HEAD
 An agent applying batch LSPI and using polynomial basis for action-value approximation. Constant _epsilon_ of 1 used during experience sampling (i.e. a fully random policy). Discount factor _gamma_ set at 1.0.
-=======
-An agent applying batch LSPI and using polynomial basis for action-value approximation. Constant epsilon of 1 used during experience sampling (i.e. a fully random policy). Discount factor gamma set at 1.0.
->>>>>>> 4fa4ada0a633fcea9a033832b3e6901441ab0d92
 ```yml
 -
   name: LSPI_POL
@@ -213,7 +177,6 @@ An agent applying batch LSPI and using polynomial basis for action-value approxi
 
 ## Report file format
 
-<<<<<<< HEAD
 A report file collects the results of a test run as a serialized [pickle](https://docs.python.org/3/library/pickle.html#module-pickle]).
 
 A fixed number of reporting points is set at log-intervals for episodic methods. Batch method reports after each iteration.
@@ -231,38 +194,15 @@ The report file contains a `dict` with the following string keys:
 - `episode_lenghts`: a DataFrame with min, average and max episode lengths during learning and evaluation
 
 - `maze_config`: maze config `dict` (included only if environment is `maze`)
-=======
-A report file collecting the results of a test run is a serialized [pickle](https://docs.python.org/3/library/pickle.html#module-pickle]). Reporting points are set at log-intervals during learning.
-
-The file contains a `dict` with the following string keys:
-
-`agents`: agent definition (from config file)
-
-`report`: a [Pandas DataFrame](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) with value (and visit count, if available) for each agent and defined state-action pair at each reporting time point during learning
-
-`tr_rewards`: a DataFame containing cumulative reward at each reporting time point during learning
-
-`ev_rewards`: a DataFame containing cumulative reward collected during evaluation 
-
-`episode_lenghts`: a DataFame with min, average and max episode lengths during learning and evaluation
-
-`maze_config`: maze config (included only if environment is `maze`)
->>>>>>> 4fa4ada0a633fcea9a033832b3e6901441ab0d92
 
 
 ## Additional configuration
 
 See [utils/constants.py](utils/constants.py) for more configurable settings
 
-<<<<<<< HEAD
 ## Type checking source code
 
 For type checking, `mypy --strict` has been applied. To run type checking create `mypy.ini` config file with the following contents:
-=======
-## Type checking
-
-For type checking, `mypy --strict` has been applied. To run type checking create config file mypy.ini with the following contents
->>>>>>> 4fa4ada0a633fcea9a033832b3e6901441ab0d92
 
 ```
 [mypy]
@@ -278,19 +218,11 @@ mypy --namespace-packages --strict --show-error-codes --show-column-numbers .
 	
 ## Motivation
 
-<<<<<<< HEAD
 Motivation behind this experiment has been two-fold:
 
 First, to gain sufficent understading of Reinforcement Learning through hands-on implementation of basic algorithms. This target setting effectively ruled out the use of ready ML libraries, plenty of which are readily available (see e.g. [OpenAI](https://github.com/openai/baselines), [TF-Agents](https://github.com/tensorflow/agents) or [acme](https://github.com/deepmind/acme)). Arguably, an approach utilizing current state-of-the-art would have enabled faster progress towards, say, Deep learning methods. 
 
 Second, to gain experience in using Python beyond simple scripting or notebook use, and especially, modeling a problem domain and associated “real-world” concepts (in this case entities such as agents, policies, environments...) using Python classes and data structures: The goal was to get a feel for what is considered "Pythonic" and why. This goal remains work-in-progress.
-=======
-Motivation behind creating this experiment was two-fold:
-
-First, to gain sufficent understading of RL methods through hands-on implementation of basic algorithms. This target setting effectively ruled out the use of ML libraries, plenty of which are readily available. Arguably, an approach utilizing existing code would have enabled faster progress towards, say, Deep learning methods. 
-
-Second, to gain experience in using Python beyond simple scripting or notebook use, and especially, modeling a problem domain and associated “real-world” concepts (in this case entities such as agents, policies, environments...) using Python data strctures: The goal was to get a feel for what is considered "Pythonic" and why. This goal is still work-in-progress.
->>>>>>> 4fa4ada0a633fcea9a033832b3e6901441ab0d92
 
 So, exiting challenges remain...
 
