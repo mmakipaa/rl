@@ -11,11 +11,18 @@ $ git clone https://github.com/mmakipaa/rl
 $ conda env create -n <name_for_env> -f environment.yml
 $ conda activate <name_for_env>
 ```
+Decide where to store test results and create corresponding `<folder>` if needed. See --report command line option below for more details.
 
-Run a test for 10000 episodes of blackjack with methods defined in [configs/all_agents.yaml](configs/all_agents.yaml). Store results in `folder/filename.pik`
+Run a test for 10000 episodes of blackjack with methods defined in [configs/all_agents.yaml](configs/all_agents.yaml). Store results in `<folder>/<filename>.pik`
 
 ```py
-python run.py -e blackjack -i 10000 -c all_agents -r folder/filename
+python run.py -e blackjack -i 10000 -c all_agents -r <folder>/<filename>
+```
+
+If creating conda environment fails, this might be due to cross platform issues - try using `environment_explicit.yml` containing only explicitly included packages:
+
+```sh
+$ conda env create -n <name_for_env> -f environment_explicit.yml
 ```
 
 ## Command line arguments
