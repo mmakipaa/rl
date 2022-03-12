@@ -40,7 +40,7 @@ def run(args: argparse.Namespace) -> None:  # pylint: disable=too-many-locals
 
     environment = create_environment(args.environment, Defaults.ENV_VARIANT)
 
-    agent_list = _read_config_file(args.configfile)
+    agent_list = _read_config_file(args.configfile_as_path)
 
     tr_episode_len: dict[str, int|float] = {}
     ev_episode_len: dict[str, int|float] = {}
@@ -106,13 +106,10 @@ def run(args: argparse.Namespace) -> None:  # pylint: disable=too-many-locals
     if args.environment == 'maze':
         result_dict['maze_config'] = configurations[Defaults.ENV_VARIANT]
 
-
-    file_path = args.report
-
-    with open(file_path,'wb') as file:
+    with open(args.report_as_path,'wb') as file:
         pickle.dump(result_dict, file)
 
-    print(f"\nTestrun completed, saved results to {file_path}")
+    print(f"\nTestrun completed, saved results to {args.report_as_path}")
 
 
 def main() -> None:
@@ -143,39 +140,52 @@ def main() -> None:
     parser.add_argument("-r", "--report", type=str,
                         help="report file name, a pickle file to store results in."
                              "This option can be used to override the default "
-                             "filename <configfile>_<iterations>.pik. "
+                             "filename <environment>_<configfile>_<iterations>.pik. "
                              "If no extension is given, .pik is assumed. "
                              f"If no path is given, default path '{Defaults.REPORT_FOLDER}' is used")
 
-
     args = parser.parse_args()
 
-    print(vars(args))
 
-    if args.configfile:
-        configfile_path = Path(args.configfile).with_suffix(".yaml")
+    # config file
 
-        if len(configfile_path.parts) > 1:
-            args.configfile = str(configfile_path)
-        else:
-            args.configfile = Path.joinpath(configs_folder_path, configfile_path)
+    configfile_path = Path(args.configfile)
 
-    if args.iterations:
-        pass
+    if len(configfile_path.parts) == 1:
+        args.configfile_as_path = Path.joinpath(configs_folder_path, configfile_path)
+    else:
+        args.configfile_as_path = configfile_path
+
+    if args.configfile_as_path.suffix == '':
+        args.configfile_as_path = args.configfile_as_path.with_suffix(".yaml")
+
+    if not args.configfile_as_path.exists():
+        raise SystemExit(f"Configuration file '{args.configfile_as_path}' derived from given "
+                         f"parameter '{args.configfile}' does not exist")
+
+
+    # report destination file
 
     if args.report:
-        reportfile_path = Path(args.report).with_suffix(".pik")
+        reportfile_path = Path(args.report)
 
-        if len(reportfile_path.parts) > 1:
-            args.report = str(reportfile_path)
+        if len(reportfile_path.parts) == 1:
+            args.report_as_path = Path.joinpath(report_folder_path, reportfile_path)
         else:
-            args.report = Path.joinpath(report_folder_path, reportfile_path)
+            args.report_as_path = reportfile_path
+
+        if args.report_as_path.suffix == '':
+            args.report_as_path = args.report_as_path.with_suffix(".pik")
 
     else:
-        file_name_only = Path(args.configfile).stem
+        file_name_only = args.configfile_as_path.stem
         report = args.environment + "_" + file_name_only + "_" + str(args.iterations)
 
-        args.report = Path.joinpath(report_folder_path, report).with_suffix(".pik")
+        args.report_as_path = Path.joinpath(report_folder_path, report).with_suffix(".pik")
+
+    if not args.report_as_path.parents[0].exists():
+        raise SystemExit(f"Path '{args.report_as_path.parents[0]}' does not exist. "
+                          f"Will not be able to create results file '{args.report_as_path}'")
 
     run(args)
 
