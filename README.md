@@ -2,6 +2,8 @@
 
 This repository contains implementations of basic Reinforcement Learning (RL) algorithms in Python.
 
+Jupyter notebooks visualizing test run results based on the implementation can be found in https://github.com/mmakipaa/rl-results.
+
 ## Getting started
 
 Using [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) environments: 
