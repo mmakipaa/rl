@@ -11,7 +11,7 @@ $ git clone https://github.com/mmakipaa/rl
 $ conda env create -n <name_for_env> -f environment.yml
 $ conda activate <name_for_env>
 ```
-Decide where to store test results and create corresponding `<folder>` if needed. See --report command line option below for more details.
+Decide where to store test results and create the corresponding `<folder>` if needed. See `--report` command line option below for more details.
 
 Run a test for 10000 episodes of blackjack with methods defined in [configs/all_agents.yaml](configs/all_agents.yaml). Store results in `<folder>/<filename>.pik`
 
@@ -19,7 +19,7 @@ Run a test for 10000 episodes of blackjack with methods defined in [configs/all_
 python run.py -e blackjack -i 10000 -c all_agents -r <folder>/<filename>
 ```
 
-If creating conda environment fails, this might be due to cross platform issues - try using `environment_explicit.yml` containing only explicitly included packages:
+If creating a conda environment fails, this might be due to cross platform issues - try using `environment_explicit.yml` listing only explicitly included packages:
 
 ```sh
 $ conda env create -n <name_for_env> -f environment_explicit.yml
@@ -29,19 +29,19 @@ $ conda env create -n <name_for_env> -f environment_explicit.yml
 
 With `python run.py`, use the following command line arguments:
 
-`-e, --environment` (requred)
+`-e, --environment` _(requred)_
 
 environment to use, either `blackjack` or `maze`
 
-`-i, --iterations` (requred)
+`-i, --iterations` _(requred)_
 
 number of learning episodes to run for episodic methods (including episodic TD). For LSPI-batch method, number of episodes to sample
 
-`-c, --configfile` (requred)
+`-c, --configfile` _(requred)_
 
 config file name - a yaml config file defining agents (methods) to include. If no path is given as a part of the argument, default folder `./configs/` is used
 
-`-r, --report` (optional)
+`-r, --report` _(optional)_
 
 report file name - use the argument to override the default report file name which is `../testruns/<environment>_<configfile>_<iterations>.pik`. 
 
@@ -67,7 +67,7 @@ The following Reinforcement Learning methods have been implemented:
 
 ### Tabular value representation
 
-For these methods, action-value function `Q(s,a)` is represented as a table structure
+For these methods, action-value function _Q(s,a)_ is represented as a table structure
 
 #### Updates based on full episodes
 
@@ -82,13 +82,13 @@ For these methods, action-value function `Q(s,a)` is represented as a table stru
 
 ### Approximate linear value representation
 
-With approximate methods, action-value function `Q(s,a;w)` is approximated using a linear function of weight vector `w`. Values are updated applying TD(0) semi-gradient descent 
+With approximate methods, action-value function _Q(s,a;w)_ is approximated using a linear function of weight vector _w_. Values are updated applying TD(0) semi-gradient descent 
 
 - Semi-gradient Sarsa
 
 ### Batch method
 
-The above methods use episodes to update estimates of action-value function, even for TD updates. For batch method, we create an experience consisting of a large number of `{S,A,R,S}` samples and use the batch to derive an estimate for weights of a linear model.
+The above methods use episodes to update estimates of action-value function, even for TD updates. For batch method, we create an experience consisting of a large number of _{s,a,r,s´}_ samples and use the batch to derive an estimate for weights of a linear model.
 
 - Least-squares policy iteration LSPI-LSTDQ
 

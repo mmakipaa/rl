@@ -1,0 +1,40 @@
+- 
+  name: SG_SARSA_FC_A100
+  method: SgFcSarsa
+  epsilon_type: INV_ROUNDS_TARGET_AT
+  epsilon_initial: 0.5
+  epsilon_target: 0.05
+  alpha_type: EXPONENTIAL_TARGET_AT
+  alpha_initial: 0.1
+  alpha_target: 0.001
+  gamma: 1.0
+- 
+  name: SG_SARSA_FC_A050
+  method: SgFcSarsa
+  epsilon_type: INV_ROUNDS_TARGET_AT
+  epsilon_initial: 0.5
+  epsilon_target: 0.05
+  alpha_type: EXPONENTIAL_TARGET_AT
+  alpha_initial: 0.05
+  alpha_target: 0.001
+  gamma: 1.0
+- 
+  name: SG_SARSA_FC_A010
+  method: SgFcSarsa
+  epsilon_type: INV_ROUNDS_TARGET_AT
+  epsilon_initial: 0.5
+  epsilon_target: 0.05
+  alpha_type: EXPONENTIAL_TARGET_AT
+  alpha_initial: 0.01
+  alpha_target: 0.001
+  gamma: 1.0
+- 
+  name: SG_SARSA_FC_A005
+  method: SgFcSarsa
+  epsilon_type: INV_ROUNDS_TARGET_AT
+  epsilon_initial: 0.5
+  epsilon_target: 0.05
+  alpha_type: EXPONENTIAL_TARGET_AT
+  alpha_initial: 0.005
+  alpha_target: 0.0005
+  gamma: 1.0
